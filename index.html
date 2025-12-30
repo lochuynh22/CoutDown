@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Countdown Landing Page</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* Hero Section */
+        .hero {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            min-height: 600px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        /* Background Image with Blur */
+        .hero-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('./6c52797d-a2db-4224-8d1a-1e0dcfed8102.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            filter: blur(10px);
+            transform: scale(1.15);
+        }
+
+        /* Dark Overlay */
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0.5) 100%);
+            z-index: 1;
+        }
+
+        /* Content Container */
+        .content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            color: white;
+            padding: 40px 20px;
+            width: 100%;
+            max-width: 1200px;
+            animation: fadeIn 1.2s ease-out;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Countdown Title */
+        .countdown-title {
+            font-family: 'Brush Script MT', 'Lucida Handwriting', 'Dancing Script', cursive;
+            font-size: 5.5rem;
+            font-weight: 400;
+            margin-bottom: 60px;
+            color: #ffffff;
+            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.6);
+            letter-spacing: 2px;
+            line-height: 1.2;
+        }
+
+        /* Countdown Container */
+        .countdown-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 25px;
+            margin-bottom: 80px;
+            flex-wrap: wrap;
+        }
+
+        /* Countdown Box */
+        .countdown-box {
+            background: linear-gradient(145deg, rgba(255, 140, 0, 0.95), rgba(255, 69, 0, 0.95));
+            border: 2px solid rgba(255, 255, 255, 0.4);
+            border-radius: 20px;
+            padding: 35px 40px;
+            min-width: 180px;
+            box-shadow: 
+                0 10px 30px rgba(0, 0, 0, 0.5),
+                0 0 25px rgba(0, 123, 255, 0.4),
+                inset 0 1px 0 rgba(255, 255, 255, 0.2);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            backdrop-filter: blur(10px);
+        }
+
+        .countdown-box:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 
+                0 15px 40px rgba(0, 0, 0, 0.6),
+                0 0 35px rgba(0, 123, 255, 0.6),
+                inset 0 1px 0 rgba(255, 255, 255, 0.3);
+        }
+
+        /* Countdown Number */
+        .countdown-number {
+            font-size: 5.5rem;
+            font-weight: 800;
+            color: #ffffff;
+            font-family: 'Arial Black', 'Arial', sans-serif;
+            line-height: 1;
+            margin-bottom: 12px;
+            text-shadow: 
+                2px 2px 4px rgba(0, 0, 0, 0.4),
+                0 0 10px rgba(255, 255, 255, 0.1);
+            letter-spacing: -2px;
+        }
+
+        /* Countdown Label */
+        .countdown-label {
+            font-size: 1.4rem;
+            color: #ffffff;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
+            margin-top: 5px;
+        }
+
+        /* Logo Section */
+        .logo-section {
+            margin-top: 50px;
+            animation: fadeIn 1.8s ease-out;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 25px;
+        }
+
+        .logo {
+            max-width: 220px;
+            width: 100%;
+            height: auto;
+            filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.4));
+            transition: transform 0.3s ease;
+        }
+
+        .logo:hover {
+            transform: scale(1.05);
+        }
+
+        /* Slogan */
+        .slogan {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #FFD700;
+            text-shadow: 
+                2px 2px 4px rgba(0, 0, 0, 0.6),
+                0 0 15px rgba(255, 215, 0, 0.6),
+                0 0 25px rgba(255, 215, 0, 0.3);
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            font-family: 'Arial', sans-serif;
+        }
+
+        /* Responsive Design - Tablet */
+        @media (max-width: 1024px) {
+            .countdown-title {
+                font-size: 4.5rem;
+                margin-bottom: 50px;
+            }
+
+            .countdown-container {
+                gap: 20px;
+                margin-bottom: 70px;
+            }
+
+            .countdown-box {
+                padding: 30px 35px;
+                min-width: 160px;
+            }
+
+            .countdown-number {
+                font-size: 4.5rem;
+            }
+
+            .countdown-label {
+                font-size: 1.2rem;
+            }
+
+            .logo {
+                max-width: 180px;
+            }
+
+            .slogan {
+                font-size: 1.5rem;
+                letter-spacing: 3px;
+            }
+        }
+
+        /* Responsive Design - Mobile */
+        @media (max-width: 768px) {
+            .hero {
+                min-height: 100vh;
+            }
+
+            .content {
+                padding: 30px 15px;
+            }
+
+            .countdown-title {
+                font-size: 3.5rem;
+                margin-bottom: 40px;
+            }
+
+            .countdown-container {
+                gap: 15px;
+                margin-bottom: 60px;
+            }
+
+            .countdown-box {
+                padding: 25px 20px;
+                min-width: 130px;
+                border-radius: 15px;
+            }
+
+            .countdown-number {
+                font-size: 3.5rem;
+                margin-bottom: 10px;
+            }
+
+            .countdown-label {
+                font-size: 1rem;
+                letter-spacing: 1.5px;
+            }
+
+            .logo-section {
+                margin-top: 40px;
+                gap: 20px;
+            }
+
+            .logo {
+                max-width: 160px;
+            }
+
+            .slogan {
+                font-size: 1.3rem;
+                letter-spacing: 2px;
+            }
+        }
+
+        /* Responsive Design - Small Mobile */
+        @media (max-width: 480px) {
+            .countdown-title {
+                font-size: 2.8rem;
+                margin-bottom: 35px;
+            }
+
+            .countdown-container {
+                gap: 12px;
+                margin-bottom: 50px;
+            }
+
+            .countdown-box {
+                padding: 20px 15px;
+                min-width: 100px;
+                border-radius: 12px;
+            }
+
+            .countdown-number {
+                font-size: 2.8rem;
+                margin-bottom: 8px;
+            }
+
+            .countdown-label {
+                font-size: 0.85rem;
+                letter-spacing: 1px;
+            }
+
+            .logo {
+                max-width: 140px;
+            }
+
+            .slogan {
+                font-size: 1.1rem;
+                letter-spacing: 1.5px;
+            }
+        }
+
+        /* Extra Small Devices */
+        @media (max-width: 360px) {
+            .countdown-title {
+                font-size: 2.2rem;
+            }
+
+            .countdown-box {
+                padding: 18px 12px;
+                min-width: 85px;
+            }
+
+            .countdown-number {
+                font-size: 2.2rem;
+            }
+
+            .countdown-label {
+                font-size: 0.75rem;
+            }
+
+            .slogan {
+                font-size: 0.95rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="hero">
+        <!-- Background Image -->
+        <div class="hero-background"></div>
+        
+        <!-- Dark Overlay -->
+        <div class="hero-overlay"></div>
+        
+        <!-- Content -->
+        <div class="content">
+            <!-- Countdown Title -->
+            <h1 class="countdown-title">Countdown</h1>
+            
+            <!-- Countdown Timer -->
+            <div class="countdown-container">
+                <div class="countdown-box">
+                    <div class="countdown-number" id="days">00</div>
+                    <div class="countdown-label">NGÀY</div>
+                </div>
+                <div class="countdown-box">
+                    <div class="countdown-number" id="hours">00</div>
+                    <div class="countdown-label">GIỜ</div>
+                </div>
+                <div class="countdown-box">
+                    <div class="countdown-number" id="minutes">00</div>
+                    <div class="countdown-label">PHÚT</div>
+                </div>
+                <div class="countdown-box">
+                    <div class="countdown-number" id="seconds">00</div>
+                    <div class="countdown-label">GIÂY</div>
+                </div>
+            </div>
+            
+            <!-- Logo Section -->
+            <div class="logo-section">
+                <img src="./z7380155275704_418156c35dd5009775656281a1c5f906-removebg-preview.png" alt="Logo" class="logo" id="logo">
+                <div class="slogan">FROM MUTE WITH LOVE !</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // ============================================
+        // COUNTDOWN CONFIGURATION
+        // ============================================
+        // Set your target date and time here
+        // Format: 'YYYY-MM-DD HH:MM:SS' (24-hour format)
+        // Example: '2024-12-31 23:59:59'
+        // You can also use: '2024-12-31T23:59:59'
+        const TARGET_DATE = '2026-01-10 18:00:00';
+
+        // ============================================
+        // COUNTDOWN LOGIC
+        // ============================================
+        
+        // Get DOM elements for countdown display
+        const daysElement = document.getElementById('days');
+        const hoursElement = document.getElementById('hours');
+        const minutesElement = document.getElementById('minutes');
+        const secondsElement = document.getElementById('seconds');
+
+        /**
+         * Calculate the time difference between now and target date
+         * @returns {Object} Object containing days, hours, minutes, seconds
+         */
+        function calculateTimeRemaining() {
+            // Get current date and target date
+            const now = new Date().getTime();
+            const target = new Date(TARGET_DATE).getTime();
+            
+            // Calculate the difference in milliseconds
+            const difference = target - now;
+            
+            // If countdown has ended
+            if (difference <= 0) {
+                return {
+                    days: 0,
+                    hours: 0,
+                    minutes: 0,
+                    seconds: 0
+                };
+            }
+            
+            // Calculate time units
+            // Days: total milliseconds divided by milliseconds in a day
+            const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+            
+            // Hours: remainder after days, divided by milliseconds in an hour
+            const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            
+            // Minutes: remainder after hours, divided by milliseconds in a minute
+            const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+            
+            // Seconds: remainder after minutes, divided by milliseconds in a second
+            const seconds = Math.floor((difference % (1000 * 60)) / 1000);
+            
+            return { days, hours, minutes, seconds };
+        }
+
+        /**
+         * Format number with leading zero if needed
+         * Ensures numbers are always displayed as two digits (e.g., "05" instead of "5")
+         * @param {number} num - Number to format
+         * @returns {string} Formatted number as string with leading zero
+         */
+        function formatNumber(num) {
+            return num.toString().padStart(2, '0');
+        }
+
+        /**
+         * Update the countdown display
+         * This function is called every second to update the countdown timer
+         */
+        function updateCountdown() {
+            const time = calculateTimeRemaining();
+            
+            // Update DOM elements with formatted values
+            daysElement.textContent = formatNumber(time.days);
+            hoursElement.textContent = formatNumber(time.hours);
+            minutesElement.textContent = formatNumber(time.minutes);
+            secondsElement.textContent = formatNumber(time.seconds);
+        }
+
+        /**
+         * Initialize countdown
+         * Sets up the countdown timer and starts the interval
+         */
+        function initCountdown() {
+            // Update immediately on load to avoid delay
+            updateCountdown();
+            
+            // Update every second (1000 milliseconds)
+            // This ensures the countdown updates in real-time
+            setInterval(updateCountdown, 1000);
+        }
+
+        // ============================================
+        // LOGO HANDLING
+        // ============================================
+        // Replace the placeholder logo with your actual logo
+        // Option 1: Update the src attribute in the HTML img tag
+        // Option 2: Uncomment and modify the code below to set logo programmatically:
+        
+        // const logoElement = document.getElementById('logo');
+        // logoElement.src = 'path/to/your/logo.png';
+        // logoElement.alt = 'Your Logo Name';
+
+        // ============================================
+        // INITIALIZE ON PAGE LOAD
+        // ============================================
+        // Wait for DOM to be fully loaded before initializing
+        // This ensures all elements are available before we try to access them
+        if (document.readyState === 'loading') {
+            // DOM is still loading, wait for DOMContentLoaded event
+            document.addEventListener('DOMContentLoaded', initCountdown);
+        } else {
+            // DOM is already loaded, initialize immediately
+            initCountdown();
+        }
+    </script>
+</body>
+</html>
